@@ -4,11 +4,11 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const messageFunctions = require('../db/message-queries');
 
 router.get('/', (req, res) => {
-  messageFunctions.getListings()
+  messageFunctions.getMessages()
     .then((messages) => {
       res.json(messages);
     });
