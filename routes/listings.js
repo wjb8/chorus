@@ -6,20 +6,27 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+const listingFunctions = require('../db/listing-queries');
 
-module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM listings;`)
-      .then(data => {
-        const listings = data.rows;
-        res.json({ listings });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-  return router;
-};
+router.get('/', (req, res) => {
+  listingFunctions.getListings()
+    .then((listings) => {
+      res.json(listings);
+    });
+});
+
+router.get('/:id', (req, res) => {
+  listingFunctions.getListingByID(req.params.id)
+    .then((listing) => {
+      res.json(listing);
+    });
+});
+
+
+
+
+
+
+
+module.exports = router;
