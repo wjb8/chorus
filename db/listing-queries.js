@@ -7,7 +7,7 @@ const getListings = () => {
     });
 };
 
-const getListingsByID = (id) => {
+const getListingByID = (id) => {
   return db.query('SELECT * FROM listings WHERE id = $1', [id])
     .then((response) => {
       return response.rows[0];
@@ -16,5 +16,5 @@ const getListingsByID = (id) => {
 
 module.exports = {
   getListings,
-  getListingsByID
+  getListingByID
 };
