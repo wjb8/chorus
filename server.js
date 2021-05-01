@@ -42,6 +42,7 @@ const widgetsRoutes = require("./routes/widgets");
 const listingsRouter = require("./routes/listings");
 const messagesRouter = require("./routes/messages");
 const loginRouter = require("./routes/login");
+const favoritesRouter = require("./routes/favorites");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -50,6 +51,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use('/listings', listingsRouter);
 app.use('/messages', messagesRouter);
 app.use('/login', loginRouter);
+app.use('/favorites', favoritesRouter);
 
 // Home page
 // Warning: avoid creating more routes in this file!

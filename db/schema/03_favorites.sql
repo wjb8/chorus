@@ -1,5 +1,3 @@
--- Drop and recreate Users table (Example)
-
 DROP TABLE IF EXISTS favorites CASCADE;
 CREATE TABLE favorites (
   id SERIAL PRIMARY KEY NOT NULL,
