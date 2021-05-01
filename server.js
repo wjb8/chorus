@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
 const bodyParser = require("body-parser");
+const cookieSession = require("cookie-session");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
@@ -20,6 +21,12 @@ app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['123abc'],
+
+  maxAge: 34 * 60 * 60 * 1000 //24hrs
+}));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -34,6 +41,7 @@ const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const listingsRouter = require("./routes/listings");
 const messagesRouter = require("./routes/messages");
+const loginRouter = require("./routes/login");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -41,6 +49,7 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use('/listings', listingsRouter);
 app.use('/messages', messagesRouter);
+app.use('/login', loginRouter);
 
 // Home page
 // Warning: avoid creating more routes in this file!
