@@ -1,7 +1,5 @@
 /*
  * All routes for Listings are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
@@ -16,8 +14,21 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/new', (req, res) => {
+
+
+  res.send('yes hello this is the create new listing page');
+});
+
 router.get('/:id', (req, res) => {
   listingFunctions.getListingByID(req.params.id)
+    .then((listing) => {
+      res.json(listing);
+    });
+});
+
+router.post('/', (req, res) => {
+  listingFunctions.addNewListing()
     .then((listing) => {
       res.json(listing);
     });
