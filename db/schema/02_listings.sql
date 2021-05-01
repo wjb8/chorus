@@ -1,5 +1,3 @@
--- Drop and recreate Users table (Example)
-
 DROP TABLE IF EXISTS listings CASCADE;
 CREATE TABLE listings (
   id SERIAL PRIMARY KEY NOT NULL,
