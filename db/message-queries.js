@@ -6,3 +6,7 @@ const getMessages = () => {
       return response.rows;
     });
 };
+
+module.exports = {
+  getMessages
+};

@@ -14,7 +14,19 @@ const getListingByID = (id) => {
     });
 };
 
+const addNewListing = (listing) => {
+  return db.query(
+    `INSERT INTO listings (user_id, title, description, price, created_at, sold_at)
+      VALUES ($1, $2, $3, $4, NOW())
+      RETURNING *`,
+    [listing.user_id, listing.title, listing.description, listing.price])
+    .then((response) => {
+      return response.rows[0];
+    });
+};
+
 module.exports = {
   getListings,
-  getListingByID
+  getListingByID,
+  addNewListing
 };

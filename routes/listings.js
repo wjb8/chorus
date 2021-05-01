@@ -27,4 +27,11 @@ router.get('/new', (req, res) => {
   res.send('yes hello this is the create new listing page');
 });
 
+router.post('/', (req, res) => {
+  listingFunctions.addNewListing()
+    .then((listing) => {
+      res.json(listing);
+    });
+});
+
 module.exports = router;
