@@ -14,17 +14,17 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/new', (req, res) => {
+
+
+  res.send('yes hello this is the create new listing page');
+});
+
 router.get('/:id', (req, res) => {
   listingFunctions.getListingByID(req.params.id)
     .then((listing) => {
       res.json(listing);
     });
-});
-
-router.get('/new', (req, res) => {
-
-
-  res.send('yes hello this is the create new listing page');
 });
 
 router.post('/', (req, res) => {
