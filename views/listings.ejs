@@ -17,7 +17,15 @@
 <%- include('partials/_header') %>
 
   <body>
-    <h1>Listings</h1>
+    <h2>Filter Listings</h2>
+    <form action="/listings" method="GET">
+      <label for="minPrice">Minimum Price:</label>
+      <input type="text" name="minPrice">
+      <label for="maxPrice">Maximum Price:</label>
+      <input type="text" name="minPrice">
+      <button type="submit">Search</button>
+    </form>
+    <h2>Listings</h2>
     <table class="table">
       <tbody>
         <% for(const listing of listings) { %>
