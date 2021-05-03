@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Listings</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -17,14 +17,32 @@
 <%- include('partials/_header') %>
 
   <body>
-    <h1>Hello World!</h1>
-
-
-
-
-
-
-
+    <h2>Filter Listings</h2>
+    <form action="/listings" method="GET">
+      <label for="minPrice">Minimum Price:</label>
+      <input type="text" name="minPrice">
+      <label for="maxPrice">Maximum Price:</label>
+      <input type="text" name="minPrice">
+      <button type="submit">Search</button>
+    </form>
+    <h2>Listings</h2>
+    <table class="table">
+      <tbody>
+        <% for(const listing of listings) { %>
+          <tr>
+            <td>IMAGEURL</td>
+            <td>
+              <a href="/listings/<%= listing.id %>">
+                <%= listing.title %>
+              </a>
+            </td>
+            <td>
+              <%= listing.price %>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>

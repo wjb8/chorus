@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Listing</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -17,11 +17,29 @@
 <%- include('partials/_header') %>
 
   <body>
-    <h1>Hello World!</h1>
+    <h1>
+      <%= listing.title %>
+    </h1>
 
+    IMAGEURL
 
+    <span>
+      <%= listing.price %>
+    </span>
 
+    <p>
+      <%= listing.description %>
+    </p>
 
+    <h2>Contact Me:</h2>
+
+    <ul>
+      <li>e-mail: <%= listing.email %>
+      </li>
+      <li>text: <%= listing.cellphone %>
+      </li>
+      <li>message: <a href="/messages">message me!</a></li>
+    </ul>
 
 
 

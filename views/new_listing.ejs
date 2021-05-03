@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>New Listing</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -17,13 +17,19 @@
 <%- include('partials/_header') %>
 
   <body>
-    <h1>Hello World!</h1>
+    <h1>New Listing</h1>
 
-
-
-
-
-
+    <form action="/listings" method="POST">
+      <label for="title">Title:</label>
+      <input type="text" name="title">
+      <label for="imageURL">Image URL:</label>
+      <input type="text" name="imageURL">
+      <label for="price">Price:</label>
+      <input type="text" name="price">
+      <label for="description">Description:</label>
+      <input type="text" name="description">
+      <button type="submit">List!</button>
+    </form>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"

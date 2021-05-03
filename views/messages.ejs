@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Messages</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -17,14 +17,21 @@
 <%- include('partials/_header') %>
 
   <body>
-    <h1>Hello World!</h1>
-
-
-
-
-
-
-
+    <h1>Messages</h1>
+    <table class="table">
+      <tbody>
+        <% for (const message of messages) { %>
+          <tr>
+            <td>
+              <%= message.from_user_id %>
+            </td>
+            <td>
+              <%= message.message %>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
