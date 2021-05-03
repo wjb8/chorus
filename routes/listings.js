@@ -6,6 +6,7 @@
 const express = require('express');
 const router = express.Router();
 const listingFunctions = require('../db/listing-queries');
+const userFunctions = require('../db/user_queries');
 
 router.get('/', (req, res) => {
   console.log(req.query);
@@ -21,12 +22,13 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
   const user = req.session.user_id;
 
-  if (!user) {
-    res.redirect('/login');
-    return;
-  }
-
-  res.render('new_listing');
+  userFunctions.isAdmin(user)
+    .then((isAdmin) => {
+      if (!isAdmin) {
+        return res.redirect('/login');
+      }
+      res.render('new_listing');
+    });
 });
 
 router.get('/:id', (req, res) => { //=> View Specific Listing
