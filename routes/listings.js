@@ -29,8 +29,7 @@ router.post('/', (req, res) => {
   const user = req.session.user_id;
 
   if (!user) {
-    res.statusCode = 401;
-    res.send('Error: Please log in');
+    res.redirect('/login');
     return;
   }
 
@@ -42,8 +41,7 @@ router.post('/:id', (req, res) => { //=> Update listing
   const user = req.session.user_id;
 
   if (!user) {
-    res.statusCode = 401;
-    res.send('Error: Please log in');
+    res.redirect('/login');
     return;
   }
 
@@ -55,8 +53,7 @@ router.post('/:id/delete', (req, res) => {
   const user = req.session.user_id;
 
   if (!user) {
-    res.statusCode = 401;
-    res.send('Error: Please log in');
+    res.redirect('/login');
     return;
   }
 

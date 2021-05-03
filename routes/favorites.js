@@ -2,6 +2,14 @@ const express = require('express');
 const router = express.Router();
 const favoriteFunctions = require('../db/favorite-queries');
 
+router.use((req, res, next) => {
+  if (!req.session["user_id"]) {
+    res.redirect('/login');
+  }
+
+  next();
+});
+
 router.get('/', (req, res) => {
   const currentUser = req.session["user_id"];
   console.log(currentUser);

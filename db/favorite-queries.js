@@ -7,6 +7,10 @@ const getUserFavorites = (currentUser) => {
     });
 };
 
+const addFavorite = () => {
+
+};
+
 module.exports = {
   getUserFavorites
 };
