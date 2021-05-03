@@ -8,7 +8,7 @@ const router = express.Router();
 const listingFunctions = require('../db/listing-queries');
 
 router.get('/', (req, res) => {
-  listingFunctions.getListings()
+  listingFunctions.getListings(req.query)
     .then((listings) => {
       res.json(listings);
     });

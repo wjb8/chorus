@@ -1,7 +1,29 @@
 const db = require('./db');
 
-const getListings = () => {
-  return db.query('SELECT * FROM listings;')
+const getListings = (options, limit = 10) => {
+
+  const queryParams = [];
+  let queryString = `SELECT * FROM listings\n`;
+  let clause = 'WHERE';
+
+  if (options.minPrice) {
+    queryParams.push(`%${options.minPrice}`);
+    queryString += `${clause} price >= ${queryParams.length}`;
+  }
+
+  if (options.maxPrice) {
+    queryParams.push(`%${options.maxPrice}`);
+    queryString += `${clause} price <= ${queryParams.length}`;
+  }
+
+  queryParams.push(limit);
+  queryString += `
+    GROUP BY listings.id
+    ORDER BY price
+    LIMIT $${queryParams.length};
+  `;
+
+  return db.query(queryString, queryParams)
     .then((response) => {
       return response.rows;
     });
