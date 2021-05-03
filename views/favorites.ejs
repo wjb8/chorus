@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Favorites</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -18,13 +18,21 @@
 
   <body>
     <h1>Favorites</h1>
-
-
-
-
-
-
-
+    <table class="table">
+      <tbody>
+        <% for(const favorite in favorites) { %>
+          <tr>
+            <td>IMAGEURL</td>
+            <td>
+              <%= listingName %>
+            </td>
+            <td>
+              <%= listingPrice %>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
