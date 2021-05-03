@@ -23,14 +23,14 @@ router.get('/', (req, res) => {
 router.post('/:id/remove', (req, res) => {
   const currentUser = req.session["user_id"];
   console.log(currentUser);
-  favoriteFunctions.removeFavorite(req.params.id)
+  favoriteFunctions.removeFavorite(currentUser, req.params.id)
     .then(() => res.redirect('/'));
 });
 
 router.post('/:id/add', (req, res) => {
   const currentUser = req.session["user_id"];
   console.log(currentUser);
-  favoriteFunctions.addFavorite(req.params.id)
+  favoriteFunctions.addFavorite(currentUser, req.params.id)
     .then(() => res.redirect('/'));
 });
 
