@@ -15,8 +15,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-
-
   res.send('yes hello this is the create new listing page');
 });
 
@@ -28,10 +26,39 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  listingFunctions.addNewListing()
-    .then((listing) => {
-      res.json(listing);
-    });
+  const user = req.session.user_id;
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
+  listingFunctions.addNewListing(req.body.newListing)
+    .then(() => res.redirect('/'));
+});
+
+router.post('/:id', (req, res) => { //=> Update listing
+  const user = req.session.user_id;
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
+  listingFunctions.updateListing(req.body.updateListing)
+    .then(() => res.redirect('/'));
+});
+
+router.post('/:id/delete', (req, res) => {
+  const user = req.session.user_id;
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
+  listingFunctions.deleteListing(req.params.id)
+    .then(() => res.redirect('/'));
 });
 
 module.exports = router;
