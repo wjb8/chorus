@@ -8,15 +8,24 @@ const router = express.Router();
 const listingFunctions = require('../db/listing-queries');
 
 router.get('/', (req, res) => {
+  console.log(req.query);
   listingFunctions.getListings(req.query)
     .then((listings) => {
       const templateVars = { listings };
 
       return res.render('listings', templateVars);
-    });
+    })
+    .catch(err => console.log(err.message));
 });
 
 router.get('/new', (req, res) => {
+  const user = req.session.user_id;
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
   res.render('new_listing');
 });
 

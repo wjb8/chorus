@@ -7,13 +7,15 @@ const getListings = (options, limit = 10) => {
   let clause = 'WHERE';
 
   if (options.minPrice) {
-    queryParams.push(`%${options.minPrice}`);
-    queryString += `${clause} price >= ${queryParams.length}`;
+    queryParams.push(`${options.minPrice}`);
+    queryString += `${clause} price >= $${queryParams.length}`;
+    clause = 'AND';
   }
 
   if (options.maxPrice) {
-    queryParams.push(`%${options.maxPrice}`);
-    queryString += `${clause} price <= ${queryParams.length}`;
+    queryParams.push(`${options.maxPrice}`);
+    queryString += `${clause} price <= $${queryParams.length}`;
+    clause = 'AND';
   }
 
   queryParams.push(limit);
