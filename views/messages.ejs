@@ -20,13 +20,13 @@
     <h1>Messages</h1>
     <table class="table">
       <tbody>
-        <% for(const message in messages) { %>
+        <% for (const message of messages) { %>
           <tr>
             <td>
-              <%= fromName %>
+              <%= message.from_user_id %>
             </td>
             <td>
-              <%= message %>
+              <%= message.message %>
             </td>
           </tr>
           <% } %>

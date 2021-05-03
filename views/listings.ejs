@@ -20,14 +20,16 @@
     <h1>Listings</h1>
     <table class="table">
       <tbody>
-        <% for(const listing in listings) { %>
+        <% for(const listing of listings) { %>
           <tr>
             <td>IMAGEURL</td>
             <td>
-              <%= listingName %>
+              <a href="/listings/<%= listing.id %>">
+                <%= listing.title %>
+              </a>
             </td>
             <td>
-              <%= listingPrice %>
+              <%= listing.price %>
             </td>
           </tr>
           <% } %>

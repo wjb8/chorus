@@ -8,7 +8,7 @@ const getListings = () => {
 };
 
 const getListingByID = (id) => {
-  return db.query('SELECT * FROM listings WHERE id = $1', [id])
+  return db.query('SELECT * FROM listings JOIN users ON user_id = users.id WHERE listings.id = $1 GROUP BY listings.id, users.id', [id])
     .then((response) => {
       return response.rows[0];
     });
@@ -25,9 +25,9 @@ const getListingsFiltered = (maxPrice, minPrice) => {
 const addNewListing = (listing) => {
   return db.query(
     `INSERT INTO listings (user_id, title, description, price, created_at, sold_at)
-      VALUES ($1, $2, $3, $4, NOW())
+      VALUES ($1, $2, $3, $4, NOW(), NULL)
       RETURNING *`,
-    [listing.user_id, listing.title, listing.description, listing.price])
+    [listing.userID, listing.title, listing.description, listing.price])
     .then((response) => {
       return response.rows[0];
     });

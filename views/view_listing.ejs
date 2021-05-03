@@ -18,25 +18,25 @@
 
   <body>
     <h1>
-      <%= listingTitle %>
+      <%= listing.title %>
     </h1>
 
     IMAGEURL
 
     <span>
-      <%= listingPrice %>
+      <%= listing.price %>
     </span>
 
     <p>
-      <%= listingDescription %>
+      <%= listing.description %>
     </p>
 
     <h2>Contact Me:</h2>
 
     <ul>
-      <li>e-mail: <%=userEmail %>
+      <li>e-mail: <%= listing.email %>
       </li>
-      <li>text: <%=userPhone %>
+      <li>text: <%= listing.cellphone %>
       </li>
       <li>message: <a href="/messages">message me!</a></li>
     </ul>

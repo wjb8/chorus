@@ -10,18 +10,22 @@ const listingFunctions = require('../db/listing-queries');
 router.get('/', (req, res) => {
   listingFunctions.getListings()
     .then((listings) => {
-      res.json(listings);
+      const templateVars = { listings };
+
+      return res.render('listings', templateVars);
     });
 });
 
 router.get('/new', (req, res) => {
-  res.send('yes hello this is the create new listing page');
+  res.render('new_listing');
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => { //=> View Specific Listing
   listingFunctions.getListingByID(req.params.id)
     .then((listing) => {
-      res.json(listing);
+      const templateVars = { listing };
+
+      return res.render('view_listing', templateVars);
     });
 });
 
@@ -33,7 +37,9 @@ router.post('/', (req, res) => {
     return;
   }
 
-  listingFunctions.addNewListing(req.body.newListing)
+  const newListing = { userID: user, title: req.body.title, description: req.body.description, price: req.body.price };
+
+  listingFunctions.addNewListing(newListing)
     .then(() => res.redirect('/'));
 });
 

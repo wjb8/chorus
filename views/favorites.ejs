@@ -20,14 +20,16 @@
     <h1>Favorites</h1>
     <table class="table">
       <tbody>
-        <% for(const favorite in favorites) { %>
+        <% for(const favorite of favorites) { %>
           <tr>
             <td>IMAGEURL</td>
             <td>
-              <%= listingName %>
+              <a href="/listings/<%= favorite.id %>">
+                <%= favorite.title %>
+              </a>
             </td>
             <td>
-              <%= listingPrice %>
+              <%= favorite.price %>
             </td>
           </tr>
           <% } %>

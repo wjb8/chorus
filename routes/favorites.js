@@ -12,11 +12,11 @@ router.use((req, res, next) => {
 
 router.get('/', (req, res) => {
   const currentUser = req.session["user_id"];
-  console.log(currentUser);
   favoriteFunctions.getUserFavorites(currentUser)
     .then((favorites) => {
-      console.log(favorites);
-      res.json(favorites);
+      const templateVars = { favorites };
+
+      return res.render('favorites', templateVars);
     });
 });
 
