@@ -55,7 +55,8 @@ router.post('/', (req, res) => {  //=> Make new listing
   const newListing = { userID: user, title: req.body.title, description: req.body.description, price: req.body.price };
 
   listingFunctions.addNewListing(newListing)
-    .then(() => res.redirect('/listings'));
+    .then(() => res.redirect('/listings'))
+    .catch(err => console.log(err.message));
 });
 
 router.post('/:id/delete', (req, res) => {  //=> Delete listing
@@ -67,11 +68,38 @@ router.post('/:id/delete', (req, res) => {  //=> Delete listing
   }
 
   listingFunctions.deleteListing(req.params.id)
-    .then(() => res.redirect('/listings'));
+    .then(() => res.redirect('/listings'))
+    .catch(err => console.log(err.message));
 });
 
 router.post('/:id/sold', (req, res) => {  //=> Mark sold
+  const user = req.session.user_id;
 
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
+  listingFunctions.markSold(req.params.id)
+    .then(() => {
+      res.redirect(`/listings/${req.params.id}`);
+    })
+    .catch(err => console.log(err.message));
+});
+
+router.post('/:id/unsold', (req, res) => {  //=> Mark unsold
+  const user = req.session.user_id;
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
+  listingFunctions.markUnsold(req.params.id)
+    .then(() => {
+      res.redirect(`/listings/${req.params.id}`);
+    })
+    .catch(err => console.log(err.message));
 });
 
 router.post('/:id', (req, res) => { //=> Update listing
@@ -90,7 +118,8 @@ router.post('/:id', (req, res) => { //=> Update listing
   };
 
   listingFunctions.updateListing(updateListing)
-    .then(() => res.redirect(`/${req.params.id}`));
+    .then(() => res.redirect(`/listings/${req.params.id}`))
+    .catch(err => console.log(err.message));
 });
 
 

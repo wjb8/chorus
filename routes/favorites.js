@@ -24,7 +24,7 @@ router.post('/:id/remove', (req, res) => {
   const currentUser = req.session["user_id"];
   console.log(currentUser);
   favoriteFunctions.removeFavorite(currentUser, req.params.id)
-    .then(() => res.redirect('/'));
+    .then(() => res.redirect('/favorites'));
 });
 
 router.post('/:id/add', (req, res) => {
@@ -41,6 +41,8 @@ router.post('/:id/add', (req, res) => {
       }
       return res.redirect('/');
     });
+  favoriteFunctions.addFavorite(currentUser, req.params.id)
+    .then(() => res.redirect('/favorites'));
 });
 
 module.exports = router;

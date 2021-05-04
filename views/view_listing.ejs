@@ -54,9 +54,15 @@
           <% } %>
 
             <% if (isAdmin) { %>
+              <% if (!listing.sold_at) { %>
               <form action="/listings/<%= listing.listing_id %>/sold" method="POST">
                 <button type="submit" class="btn btn-success">MARK AS SOLD</button>
               </form>
+              <% } else { %>
+                <form action="/listings/<%= listing.listing_id %>/unsold" method="POST">
+                  <button type="submit" class="btn btn-outline-success">MARK AS UNSOLD</button>
+                </form>
+              <% } %>
               <form action="/listings/<%= listing.listing_id %>/delete" method="POST">
                 <button type="submit" class="btn btn-danger">DELETE LISTING</button>
               </form>
