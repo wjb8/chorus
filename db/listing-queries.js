@@ -57,6 +57,18 @@ const addNewListing = (listing) => {
     });
 };
 
+const updateListing = (listing) => {
+  return db.query(
+    `UPDATE listings
+      SET title = $2, description = $3, price = $4
+      WHERE id = $1'
+      RETURNING *`,
+    [listing.id, listing.title, listing.description, listing.price])
+    .then((response) => {
+      return response.rows[0];
+    });
+};
+
 const deleteListing = (listingID) => {
   return db.query('DELETE FROM listings WHERE id = $1', [listingID])
     .then((response) => {

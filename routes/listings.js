@@ -44,7 +44,7 @@ router.get('/:id', (req, res) => { //=> View Specific Listing
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res) => {  //=> Make new listing
   const user = req.session.user_id;
 
   if (!user) {
@@ -55,10 +55,10 @@ router.post('/', (req, res) => {
   const newListing = { userID: user, title: req.body.title, description: req.body.description, price: req.body.price };
 
   listingFunctions.addNewListing(newListing)
-    .then(() => res.redirect('/'));
+    .then(() => res.redirect('/listings'));
 });
 
-router.post('/:id/delete', (req, res) => {
+router.post('/:id/delete', (req, res) => {  //=> Delete listing
   const user = req.session.user_id;
 
   if (!user) {
@@ -67,7 +67,11 @@ router.post('/:id/delete', (req, res) => {
   }
 
   listingFunctions.deleteListing(req.params.id)
-    .then(() => res.redirect('/'));
+    .then(() => res.redirect('/listings'));
+});
+
+router.post('/:id/sold', (req, res) => {  //=> Mark sold
+
 });
 
 router.post('/:id', (req, res) => { //=> Update listing
@@ -78,8 +82,15 @@ router.post('/:id', (req, res) => { //=> Update listing
     return;
   }
 
-  listingFunctions.updateListing(req.body.updateListing)
-    .then(() => res.redirect('/'));
+  const updateListing = {
+    userID: user,
+    title: req.body.title,
+    description: req.body.description,
+    price: req.body.price
+  };
+
+  listingFunctions.updateListing(updateListing)
+    .then(() => res.redirect(`/${req.params.id}`));
 });
 
 
