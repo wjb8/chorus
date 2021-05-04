@@ -8,7 +8,7 @@ const getMessages = () => {
 };
 
 const getMessagesWithUser = (userID) => {
-  return db.query('SELECT * FROM messages WHERE user_id = $1 ORDER BY sent_at', [userID])
+  return db.query('SELECT * FROM messages WHERE from_user_id = $1 OR to_user_id = $1 ORDER BY sent_at', [userID])
     .then((response) => {
       return response.rows;
     });

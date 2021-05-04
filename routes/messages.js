@@ -12,9 +12,10 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-  messageFunctions.getMessages()
+  const currentUser = req.session["user_id"];
+  messageFunctions.getMessagesWithUser(currentUser)
     .then((messages) => {
-      const templateVars = { messages };
+      const templateVars = { messages, currentUser };
       console.log(messages);
       res.render('messages', templateVars);
     });

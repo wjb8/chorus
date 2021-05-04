@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/messages.css" type="text/css" />
+
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -18,20 +20,33 @@
 
   <body>
     <h1>Messages</h1>
-    <table class="table">
-      <tbody>
+    <div class="conversation_container">
+      <div class="conversations">
+        <div class="conversation">
+          <div class="conversation_header">Convo 1</div>
+          <div>This is the last message that was sent in this conversation teeee heeee</div>
+        </div>
+        <div class="conversation">Convo 2</div>
+        <div class="conversation">Convo 3</div>
+      </div>
+      <div class="messages">
+
         <% for (const message of messages) { %>
-          <tr>
-            <td>
-              <%= message.from_user_id %>
-            </td>
-            <td>
-              <%= message.message %>
-            </td>
-          </tr>
-          <% } %>
-      </tbody>
-    </table>
+          <% if (message.from_user_id===Number(currentUser)) { %>
+            <span class="message from_me">
+              <% } else { %>
+                <span class="message from_you">
+                  <% } %>
+                    <%= message.from_user_id %>
+                      <%= currentUser %>
+
+
+                        <%= message.message %>
+                </span>
+                <% } %>
+      </div>
+    </div>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
