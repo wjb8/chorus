@@ -20,7 +20,7 @@
 
   <body>
     <h1>Messages</h1>
-    <div class="conversation_container">
+    <!-- <div class="conversation_container">
       <div class="conversations">
         <div class="conversation">
           <div class="conversation_header">Convo 1</div>
@@ -45,11 +45,24 @@
                 </span>
                 <% } %>
       </div>
-    </div>
+    </div> -->
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"></script>
+    <% for (const message of messages) { %>
+      <div class="message_from">
+        <div>
+          From: <%= message.from_user_id %>
+        </div>
+        <div>
+          <%= message.message %>
+        </div>
+      </div>
+      <% } %>
+
+
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
   </body>
 
 </html>

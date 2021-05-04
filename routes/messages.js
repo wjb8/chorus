@@ -1,7 +1,7 @@
-const { Template } = require('ejs');
 const express = require('express');
 const router = express.Router();
 const messageFunctions = require('../db/message-queries');
+const listingFunctions = require('../db/listing-queries');
 
 router.use((req, res, next) => {
   if (!req.session["user_id"]) {
@@ -13,11 +13,22 @@ router.use((req, res, next) => {
 
 router.get('/', (req, res) => {
   const currentUser = req.session["user_id"];
-  messageFunctions.getMessagesWithUser(currentUser)
+  messageFunctions.getMessagesToUser(currentUser)
     .then((messages) => {
       const templateVars = { messages, currentUser };
-      console.log(messages);
       res.render('messages', templateVars);
+    });
+});
+
+router.post('/', (req, res) => {
+  const currentUser = req.session["user_id"];
+  const currentListing = req.headers.referer.slice(31);
+  listingFunctions.getUserByListing(currentListing)
+    .then((listingOwner) => {
+      messageFunctions.postMessage(currentUser, listingOwner.user_id, currentListing, req.body.message)
+        .then(() => {
+          return res.redirect('/');
+        });
     });
 });
 
