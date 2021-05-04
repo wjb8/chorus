@@ -20,41 +20,15 @@
 
   <body>
     <h1>Messages</h1>
-    <!-- <div class="conversation_container">
-      <div class="conversations">
-        <div class="conversation">
-          <div class="conversation_header">Convo 1</div>
-          <div>This is the last message that was sent in this conversation teeee heeee</div>
-        </div>
-        <div class="conversation">Convo 2</div>
-        <div class="conversation">Convo 3</div>
-      </div>
-      <div class="messages">
-
-        <% for (const message of messages) { %>
-          <% if (message.from_user_id===Number(currentUser)) { %>
-            <span class="message from_me">
-              <% } else { %>
-                <span class="message from_you">
-                  <% } %>
-                    <%= message.from_user_id %>
-                      <%= currentUser %>
-
-
-                        <%= message.message %>
-                </span>
-                <% } %>
-      </div>
-    </div> -->
 
     <% for (const message of messages) { %>
-      <div class="message_from">
-        <div>
-          From: <%= message.from_user_id %>
-        </div>
-        <div>
+      <div class="message">
+        <h5>
+          From User: <%= message.from_user_id %> For Listing: <%= message.listing_id %>
+        </h5>
+        <p>
           <%= message.message %>
-        </div>
+        </p>
       </div>
       <% } %>
 

@@ -1,46 +1,5 @@
-.conversation_container {
-  display: flex;
-}
-
-.conversations {
-  padding: 5px;
-  width: 45%;
-  background-color: darkgoldenrod;
-  display: flex;
-  flex-direction: column;
-}
-
-.conversation {
-  background-color: darkgray;
-  margin: 2px;
-  padding: 5px;
-  text-align: center;
-}
-
-.conversation_header {
-  border-bottom: solid black 2px;
-  margin-bottom: 5px;;
-}
-
-.messages {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
 .message {
-  width: 40%;
-  padding: 10px;
+  background-color: darkseagreen;
   margin: 10px;
-  border-radius: 5%;
-}
-
-.from_me {
-  background-color: aquamarine;
-  align-self: flex-end;
-}
-
-.from_you {
-  background-color: coral;
-  align-self: flex-start;
+  padding: 5px;
 }
