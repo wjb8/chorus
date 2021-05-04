@@ -38,14 +38,6 @@ const getListingByID = (id) => {
     });
 };
 
-// const getListingsFiltered = (maxPrice, minPrice) => {
-//   return db.query('SELECT * FROM listings WHERE price > $1 AND price < $2', [minPrice, maxPrice])
-//     .then((response) => {
-//       return response.rows;
-//     });
-// };
-
-
 const addNewListing = (listing) => {
   return db.query(
     `INSERT INTO listings (user_id, title, description, price, created_at, sold_at)
@@ -81,6 +73,18 @@ const markSold = (listingID) => {
     });
 };
 
+const markUnsold = (listingID) => {
+  return db.query(
+    `UPDATE listings
+      SET sold_at = null
+      WHERE id = $1
+      RETURNING *;`,
+    [listingID])
+    .then((response) => {
+      return response.rows[0];
+    });
+};
+
 const deleteListing = (listingID) => {
   return db.query('DELETE FROM listings WHERE id = $1;', [listingID])
     .then((response) => {
@@ -94,5 +98,6 @@ module.exports = {
   addNewListing,
   updateListing,
   markSold,
+  markUnsold,
   deleteListing
 };
