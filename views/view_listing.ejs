@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/view_listing.css" type="text/css" />
+
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -44,7 +46,13 @@
           </li>
           <li>text: <%= listing.cellphone %>
           </li>
-          <li>message: <a href="/messages">message me!</a></li>
+          <li>
+            <form action="/messages" method="POST">
+              <label for="message">Send a message on Chorus:</label>
+              <br>
+              <textarea name="message" placeholder="Send me a message!"></textarea>
+              <button type="submit" class="btn btn-success">Send</button>
+            </form>
         </ul>
 
         <% if (user) { %>
@@ -55,25 +63,25 @@
 
             <% if (isAdmin) { %>
               <% if (!listing.sold_at) { %>
-              <form action="/listings/<%= listing.listing_id %>/sold" method="POST">
-                <button type="submit" class="btn btn-success">MARK AS SOLD</button>
-              </form>
-              <% } else { %>
-                <form action="/listings/<%= listing.listing_id %>/unsold" method="POST">
-                  <button type="submit" class="btn btn-outline-success">MARK AS UNSOLD</button>
+                <form action="/listings/<%= listing.listing_id %>/sold" method="POST">
+                  <button type="submit" class="btn btn-success">MARK AS SOLD</button>
                 </form>
-              <% } %>
-              <form action="/listings/<%= listing.listing_id %>/delete" method="POST">
-                <button type="submit" class="btn btn-danger">DELETE LISTING</button>
-              </form>
+                <% } else { %>
+                  <form action="/listings/<%= listing.listing_id %>/unsold" method="POST">
+                    <button type="submit" class="btn btn-outline-success">MARK AS UNSOLD</button>
+                  </form>
+                  <% } %>
+                    <form action="/listings/<%= listing.listing_id %>/delete" method="POST">
+                      <button type="submit" class="btn btn-danger">DELETE LISTING</button>
+                    </form>
 
-              <% } %>
+                    <% } %>
 
 
 
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                  crossorigin="anonymous"></script>
+                      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                        crossorigin="anonymous"></script>
   </body>
 
 </html>
