@@ -21,8 +21,16 @@ const removeFavorite = (userID, listingID) => {
     });
 };
 
+const checkForDuplicateFavorite = (userID, listingID) => {
+  return db.query('SELECT id FROM favorites WHERE user_id = $1 AND listing_id = $2;', [userID, listingID])
+    .then((response) => {
+      return response.rows;
+    });
+};
+
 module.exports = {
   getUserFavorites,
   addFavorite,
-  removeFavorite
+  removeFavorite,
+  checkForDuplicateFavorite
 };
