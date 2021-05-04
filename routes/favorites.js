@@ -30,8 +30,17 @@ router.post('/:id/remove', (req, res) => {
 router.post('/:id/add', (req, res) => {
   const currentUser = req.session["user_id"];
   console.log(currentUser);
-  favoriteFunctions.addFavorite(currentUser, req.params.id)
-    .then(() => res.redirect('/'));
+
+
+  favoriteFunctions.checkForDuplicateFavorite(currentUser, req.params.id)
+    .then((duplicates) => {
+      if (duplicates.length === 0) {
+
+        favoriteFunctions.addFavorite(currentUser, req.params.id)
+          .then(() => res.redirect('/'));
+      }
+      return res.redirect('/');
+    });
 });
 
 module.exports = router;
