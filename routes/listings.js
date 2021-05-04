@@ -6,6 +6,7 @@
 const express = require('express');
 const router = express.Router();
 const listingFunctions = require('../db/listing-queries');
+const userFunctions = require('../db/user_queries');
 
 router.get('/', (req, res) => {
   console.log(req.query);
@@ -21,20 +22,25 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
   const user = req.session.user_id;
 
-  if (!user) {
-    res.redirect('/login');
-    return;
-  }
-
-  res.render('new_listing');
+  userFunctions.isAdmin(user)
+    .then((isAdmin) => {
+      if (!isAdmin) {
+        return res.redirect('/login');
+      }
+      res.render('new_listing');
+    });
 });
 
 router.get('/:id', (req, res) => { //=> View Specific Listing
+  const user = req.session.user_id;
+
   listingFunctions.getListingByID(req.params.id)
     .then((listing) => {
-      const templateVars = { listing };
-
-      return res.render('view_listing', templateVars);
+      userFunctions.isAdmin(user)
+        .then((isAdmin) => {
+          const templateVars = { listing, isAdmin };
+          return res.render('view_listing', templateVars);
+        });
     });
 });
 
@@ -52,6 +58,18 @@ router.post('/', (req, res) => {
     .then(() => res.redirect('/'));
 });
 
+router.post('/:id/delete', (req, res) => {
+  const user = req.session.user_id;
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
+  listingFunctions.deleteListing(req.params.id)
+    .then(() => res.redirect('/'));
+});
+
 router.post('/:id', (req, res) => { //=> Update listing
   const user = req.session.user_id;
 
@@ -64,16 +82,6 @@ router.post('/:id', (req, res) => { //=> Update listing
     .then(() => res.redirect('/'));
 });
 
-router.post('/:id/delete', (req, res) => {
-  const user = req.session.user_id;
 
-  if (!user) {
-    res.redirect('/login');
-    return;
-  }
-
-  listingFunctions.deleteListing(req.params.id)
-    .then(() => res.redirect('/'));
-});
 
 module.exports = router;
