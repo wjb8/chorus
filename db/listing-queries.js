@@ -32,7 +32,7 @@ const getListings = (options, limit = 10) => {
 };
 
 const getListingByID = (id) => {
-  return db.query('SELECT * FROM listings JOIN users ON user_id = users.id WHERE listings.id = $1 GROUP BY listings.id, users.id', [id])
+  return db.query('SELECT listings.id as listing_id, * FROM listings JOIN users ON user_id = users.id WHERE listings.id = $1 GROUP BY listings.id, users.id', [id])
     .then((response) => {
       return response.rows[0];
     });
