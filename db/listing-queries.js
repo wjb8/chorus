@@ -88,7 +88,14 @@ const markUnsold = (listingID) => {
 const deleteListing = (listingID) => {
   return db.query('DELETE FROM listings WHERE id = $1;', [listingID])
     .then((response) => {
-      return 1;
+      return response.rows;
+    });
+};
+
+const getUserByListing = (listingID) => {
+  return db.query('SELECT user_id FROM listings WHERE id = $1;', [listingID])
+    .then((response) => {
+      return response.rows[0];
     });
 };
 
@@ -99,5 +106,6 @@ module.exports = {
   updateListing,
   markSold,
   markUnsold,
-  deleteListing
+  deleteListing,
+  getUserByListing
 };
