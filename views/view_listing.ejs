@@ -28,39 +28,45 @@
     </span>
 
     <% if (listing.sold_at) { %>
-      <p class = "sold">
+      <p class="sold">
         Sold!
       </p>
-    <% } %>
-
-    <p>
-      <%= listing.description %>
-    </p>
-
-    <h2>Contact Me:</h2>
-
-    <ul>
-      <li>e-mail: <%= listing.email %>
-      </li>
-      <li>text: <%= listing.cellphone %>
-      </li>
-      <li>message: <a href="/messages">message me!</a></li>
-    </ul>
-
-    <% if (isAdmin) { %>
-      <form action="/listings/<%= listing.id %>/delete" method="POST">
-        <button type="submit" class="btn btn-danger">DELETE LISTING</button>
-      </form>
-      <form action="/listings/<%= listing.id %>/sold" method="POST">
-        <button type="submit" class="btn btn-success">MARK AS SOLD</button>
-      </form>
       <% } %>
 
+        <p>
+          <%= listing.description %>
+        </p>
+
+        <h2>Contact Me:</h2>
+
+        <ul>
+          <li>e-mail: <%= listing.email %>
+          </li>
+          <li>text: <%= listing.cellphone %>
+          </li>
+          <li>message: <a href="/messages">message me!</a></li>
+        </ul>
+
+        <% if (user) { %>
+          <form action="/favorites/<%= listing.id %>/add" method="POST">
+            <button type="submit">FAVORITE</button>
+          </form>
+          <% } %>
+
+            <% if (isAdmin) { %>
+              <form action="/listings/<%= listing.id %>/delete" method="POST">
+                <button type="submit" class="btn btn-danger">DELETE LISTING</button>
+              </form>
+              <form action="/listings/<%= listing.id %>/sold" method="POST">
+                <button type="submit" class="btn btn-success">MARK AS SOLD</button>
+              </form>
+              <% } %>
 
 
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-          crossorigin="anonymous"></script>
+
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                  crossorigin="anonymous"></script>
   </body>
 
 </html>
