@@ -38,12 +38,12 @@ const getListingByID = (id) => {
     });
 };
 
-const getListingsFiltered = (maxPrice, minPrice) => {
-  return db.query('SELECT * FROM listings WHERE price > $1 AND price < $2', [minPrice, maxPrice])
-    .then((response) => {
-      return response.rows;
-    });
-};
+// const getListingsFiltered = (maxPrice, minPrice) => {
+//   return db.query('SELECT * FROM listings WHERE price > $1 AND price < $2', [minPrice, maxPrice])
+//     .then((response) => {
+//       return response.rows;
+//     });
+// };
 
 
 const addNewListing = (listing) => {
@@ -67,7 +67,6 @@ const deleteListing = (listingID) => {
 module.exports = {
   getListings,
   getListingByID,
-  getListingsFiltered,
   addNewListing,
   deleteListing
 };

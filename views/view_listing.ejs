@@ -27,6 +27,12 @@
       <%= listing.price %>
     </span>
 
+    <% if (listing.sold_at) { %>
+      <p class = "sold">
+        Sold!
+      </p>
+    <% } %>
+
     <p>
       <%= listing.description %>
     </p>
@@ -41,7 +47,9 @@
       <li>message: <a href="/messages">message me!</a></li>
     </ul>
 
-
+    <form method="POST" action="/<%= listing.id %>">
+      <input type="submit" class="btn btn-success" value="Mark Sold">
+    </form>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
