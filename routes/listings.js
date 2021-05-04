@@ -71,6 +71,19 @@ router.post('/:id/delete', (req, res) => {  //=> Delete listing
 });
 
 router.post('/:id/sold', (req, res) => {  //=> Mark sold
+  const user = req.session.user_id;
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
+  listingFunctions.markSold(req.params.id)
+    .then(() => {
+      console.log(req.params.id, 'hello');
+      res.redirect(`/listings`);
+    })
+    .catch(err => console.log(err.message));
 
 });
 
@@ -90,7 +103,8 @@ router.post('/:id', (req, res) => { //=> Update listing
   };
 
   listingFunctions.updateListing(updateListing)
-    .then(() => res.redirect(`/${req.params.id}`));
+    .then(() => res.redirect(`/listings`))
+    .catch(err => console.log(err.message));
 });
 
 

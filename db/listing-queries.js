@@ -69,8 +69,20 @@ const updateListing = (listing) => {
     });
 };
 
+const markSold = (listingID) => {
+  return db.query(
+    `UPDATE listings
+      SET sold_at = NOW()
+      WHERE id = $1
+      RETURNING *;`,
+    [listingID])
+    .then((response) => {
+      return response.rows[0];
+    });
+};
+
 const deleteListing = (listingID) => {
-  return db.query('DELETE FROM listings WHERE id = $1', [listingID])
+  return db.query('DELETE FROM listings WHERE id = $1;', [listingID])
     .then((response) => {
       return 1;
     });
@@ -80,5 +92,7 @@ module.exports = {
   getListings,
   getListingByID,
   addNewListing,
+  updateListing,
+  markSold,
   deleteListing
 };
