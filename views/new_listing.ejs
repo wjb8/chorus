@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/new_listing.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -21,17 +22,47 @@
   <body>
     <h1>New Listing</h1>
 
-    <form action="/listings" method="POST">
-      <label for="title">Title:</label>
-      <input type="text" name="title">
-      <label for="imageURL">Image URL:</label>
-      <input type="text" name="imageURL">
-      <label for="price">Price:</label>
-      <input type="text" name="price">
-      <label for="description">Description:</label>
-      <input type="text" name="description">
-      <button type="submit">List!</button>
-    </form>
+    <div class="container form">
+      <form action="/listings" method="POST">
+        <div class="row">
+          <div class="col">
+            <label for="title">Title:</label>
+          </div>
+          <div class="col">
+            <input type="text" name="title">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="imageURL">Image URL:</label>
+          </div>
+          <div class="col">
+            <input type="text" name="imageURL">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="price">Price:</label>
+          </div>
+          <div class="col">
+            <input type="text" name="price">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="description">Description:</label>
+          </div>
+          <div class="col">
+            <input type="text" name="description">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button type="submit">List!</button>
+          </div>
+        </div>
+      </form>
+    </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
