@@ -2,9 +2,17 @@
     text-align: center;
   }
 
-.list_image {
-  width: 150px;
-}
+  .image-container {
+    height: 125px;
+    display: flex;
+    width: 150px;
+    justify-content: center;
+  }
+
+  .list_image {
+    height: 100%;
+  }
+
 
 .listing {
   display:flex;
