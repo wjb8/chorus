@@ -1,3 +1,23 @@
+  h1 {
+    text-align: center;
+  }
+
 .list_image {
   width: 150px;
 }
+
+.favorite {
+  display:flex;
+  background-color: burlywood;
+  margin: 10px 0;
+  padding: 15px 0;
+
+
+  .col {
+    // width: 20%;
+    align-self: center;
+    justify-self: center;
+  }
+}
+
+

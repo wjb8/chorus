@@ -15,34 +15,63 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/listings.js"></script>
+
 </head>
 
 <%- include('partials/_header') %>
 
   <body>
     <h1>Favorites</h1>
-    <table class="table">
-      <tbody>
-        <% for(const favorite of favorites) { %>
-          <tr>
-            <td><img src="<%= favorite.image_url %>" alt="" class="list_image"></td>
-            <td>
-              <a href="/listings/<%= favorite.id %>">
-                <%= favorite.title %>
-              </a>
-            </td>
-            <td>
-              <%= favorite.price %>
-            </td>
-            <td>
-              <form action="/favorites/<%= favorite.id %>/remove" method="POST">
-                <button type="submit" class="btn btn-danger">REMOVE</button>
-              </form>
-            </td>
-          </tr>
-          <% } %>
-      </tbody>
-    </table>
+    <div class="container">
+      <% for(const favorite of favorites) { %>
+        <div class="row favorite">
+          <div class="col id" hidden>
+            <%= favorite.id %>
+          </div>
+          <div class="col">
+            <img src="<%= favorite.image_url %>" alt="" class="list_image">
+          </div>
+          <div class="col">
+            <%= favorite.title %>
+          </div>
+          <div class="col">
+            <%= favorite.price %>
+          </div>
+          <div class="col">
+            <form action="/favorites/<%= favorite.id %>/remove" method="POST">
+              <button type="submit" class="btn btn-danger">REMOVE</button>
+            </form>
+          </div>
+        </div>
+        <% } %>
+    </div>
+
+    <!-- <div class="page-container">
+      <h1>Favorites</h1>
+      <table class="table">
+        <tbody>
+          <% for(const favorite of favorites) { %>
+            <tr class="table-row">
+              <td><img src="<%= favorite.image_url %>" alt="" class="list_image"></td>
+              <td>
+                <a href="/listings/<%= favorite.id %>">
+                  <%= favorite.title %>
+                </a>
+              </td>
+              <td>
+                <%= favorite.price %>
+              </td>
+              <td>
+                <form action="/favorites/<%= favorite.id %>/remove" method="POST">
+                  <button type="submit" class="btn btn-danger">REMOVE</button>
+                </form>
+              </td>
+            </tr>
+            <% } %>
+        </tbody>
+      </table>
+    </div> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
