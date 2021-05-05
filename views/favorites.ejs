@@ -25,7 +25,7 @@
     <h1>Favorites</h1>
     <div class="container">
       <% for(const favorite of favorites) { %>
-        <div class="row favorite">
+        <div class="row listing">
           <div class="col id" hidden>
             <%= favorite.id %>
           </div>
@@ -46,32 +46,6 @@
         </div>
         <% } %>
     </div>
-
-    <!-- <div class="page-container">
-      <h1>Favorites</h1>
-      <table class="table">
-        <tbody>
-          <% for(const favorite of favorites) { %>
-            <tr class="table-row">
-              <td><img src="<%= favorite.image_url %>" alt="" class="list_image"></td>
-              <td>
-                <a href="/listings/<%= favorite.id %>">
-                  <%= favorite.title %>
-                </a>
-              </td>
-              <td>
-                <%= favorite.price %>
-              </td>
-              <td>
-                <form action="/favorites/<%= favorite.id %>/remove" method="POST">
-                  <button type="submit" class="btn btn-danger">REMOVE</button>
-                </form>
-              </td>
-            </tr>
-            <% } %>
-        </tbody>
-      </table>
-    </div> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>

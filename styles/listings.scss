@@ -1,3 +1,22 @@
-.list_image {
-  width: 150px;
+h2 {
+  text-align: center;
 }
+
+.list_image {
+width: 150px;
+}
+
+.listing {
+display:flex;
+background-color: burlywood;
+margin: 10px 0;
+padding: 15px 0;
+
+
+.col {
+  // width: 20%;
+  align-self: center;
+  justify-self: center;
+}
+}
+

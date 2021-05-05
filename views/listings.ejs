@@ -15,6 +15,8 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/listings.js"></script>
+
 </head>
 
 <%- include('partials/_header') %>
@@ -29,7 +31,26 @@
       <button type="submit">Search</button>
     </form>
     <h2>Listings</h2>
-    <table class="table">
+    <div class="container">
+      <% for(const listing of listings) { %>
+        <div class="row listing">
+          <div class="col id" hidden>
+            <%= listing.id %>
+          </div>
+          <div class="col">
+            <img src="<%= listing.image_url %>" alt="" class="list_image">
+          </div>
+          <div class="col">
+            <%= listing.title %>
+          </div>
+          <div class="col">
+            <%= listing.price %>
+          </div>
+        </div>
+        <% } %>
+    </div>
+
+    <!-- <table class="table">
       <tbody>
         <% for(const listing of listings) { %>
           <tr>
@@ -45,7 +66,7 @@
           </tr>
           <% } %>
       </tbody>
-    </table>
+    </table> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
