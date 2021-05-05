@@ -1,7 +1,7 @@
 const db = require('./db');
 
 const getUserFavorites = (currentUser) => {
-  return db.query('SELECT listings.id, listings.title, listings.price FROM favorites JOIN listings ON listing_id = listings.id WHERE favorites.user_id = $1 GROUP BY favorites.id, listings.id;', [currentUser])
+  return db.query('SELECT listings.id, listings.title, listings.price, listings.image_url FROM favorites JOIN listings ON listing_id = listings.id WHERE favorites.user_id = $1 GROUP BY favorites.id, listings.id;', [currentUser])
     .then((response) => {
       return response.rows;
     });

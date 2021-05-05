@@ -1,0 +1,15 @@
+.listing_container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 20px;
+
+  h1, img, span, p, .contact_me, .listing_buttons {
+    align-self: center;
+  }
+
+}
+
+.listing_image {
+  max-width: 400px;
+  max-height: 800px;
+}
