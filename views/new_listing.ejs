@@ -20,48 +20,66 @@
 <%- include('partials/_header') %>
 
   <body>
-    <h1>New Listing</h1>
+    <div class="container outer-form">
 
-    <div class="container form">
-      <form action="/listings" method="POST">
-        <div class="row">
-          <div class="col">
-            <label for="title">Title:</label>
-          </div>
-          <div class="col">
-            <input type="text" name="title">
+      <div class="row">
+        <div class="col">
+          <h2>New Listing</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="container form">
+            <form action="/listings" method="POST">
+
+              <div class="row">
+                <div class="col">
+                  <label for="title">Title:</label>
+                </div>
+                <div class="col">
+                  <input type="text" name="title">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <label for="imageURL">Image URL:</label>
+                </div>
+                <div class="col">
+                  <input type="text" name="imageURL">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <label for="price">Price:</label>
+                </div>
+                <div class="col">
+                  <input type="text" name="price">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <label for="description">Description:</label>
+                </div>
+                <div class="col">
+                  <input type="text" name="description">
+                </div>
+              </div>
+
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <label for="imageURL">Image URL:</label>
-          </div>
-          <div class="col">
-            <input type="text" name="imageURL">
-          </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary">List!</button>
         </div>
-        <div class="row">
-          <div class="col">
-            <label for="price">Price:</label>
-          </div>
-          <div class="col">
-            <input type="text" name="price">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <label for="description">Description:</label>
-          </div>
-          <div class="col">
-            <input type="text" name="description">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <button type="submit">List!</button>
-          </div>
-        </div>
+      </div>
       </form>
+
     </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
