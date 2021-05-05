@@ -33,4 +33,9 @@ router.post('/', (req, res) => {
     });
 });
 
+router.post('/reply', (req, res) => {
+  const currentUser = req.session["user_id"];
+
+});
+
 module.exports = router;

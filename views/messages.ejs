@@ -24,11 +24,15 @@
     <% for (const message of messages) { %>
       <div class="message">
         <h5>
-          From: <%= message.name %> // For: <%= message.title %> ID:<%= message.listing_id %>
+          From: <%= message.name %> // Regarding: <%= message.title %> ID:<%= message.listing_id %>
         </h5>
-        <p>
+        <p class="message-text">
           <%= message.message %>
         </p>
+        <form action="/messages/reply" name="<% message.listing_id %>" method="POST">
+          <textarea name="message" placeholder="Send a reply"></textarea>
+          <button type="submit" class="btn btn-success">Send</button>
+        </form>
       </div>
       <% } %>
 
