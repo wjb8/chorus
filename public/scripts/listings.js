@@ -10,8 +10,9 @@ $(document).ready(function() {
 
   $('.listing').on('click', function() {
     const listing = $(this).find('.id').text();
+
     $.get('/listings', function() {
-      return document.location.href = `/listings/${listing}`;
+      return document.location.href = `/listings/${listing.trim()}`;
     });
   });
 

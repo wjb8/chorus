@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err.message));
 });
 
-router.get('/new', (req, res) => {
+router.get('/new', (req, res) => {  //=>
   const user = req.session.user_id;
 
   userFunctions.isAdmin(user)
