@@ -25,9 +25,10 @@ router.post('/', (req, res) => {
   const currentListing = req.headers.referer.slice(31);
   listingFunctions.getUserByListing(currentListing)
     .then((listingOwner) => {
+      console.log(listingOwner);
       messageFunctions.postMessage(currentUser, listingOwner.user_id, currentListing, req.body.message)
         .then(() => {
-          return res.redirect('/');
+          return res.redirect('/messages');
         });
     });
 });

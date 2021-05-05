@@ -24,7 +24,7 @@
     <% for (const message of messages) { %>
       <div class="message">
         <h5>
-          From User: <%= message.from_user_id %> For Listing: <%= message.listing_id %>
+          From: <%= message.name %> // For: <%= message.title %> ID:<%= message.listing_id %>
         </h5>
         <p>
           <%= message.message %>

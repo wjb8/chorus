@@ -8,14 +8,22 @@ const getMessages = () => {
 };
 
 const getMessagesWithUser = (userID) => {
-  return db.query('SELECT * FROM messages WHERE from_user_id = $1 OR to_user_id = $1 ORDER BY sent_at', [userID])
+  return db.query(`SELECT * FROM messages
+                  JOIN users ON users.id = from_user_id
+                  JOIN listings ON listings.id = listing_id
+                  WHERE from_user_id = $1 OR to_user_id = $1
+                  ORDER BY sent_at`, [userID])
     .then((response) => {
       return response.rows;
     });
 };
 
 const getMessagesToUser = (userID) => {
-  return db.query('SELECT * FROM messages WHERE to_user_id = $1 ORDER BY sent_at', [userID])
+  return db.query(`SELECT * FROM messages
+                  JOIN users ON users.id = to_user_id
+                  JOIN listings ON listings.id = listing_id
+                  WHERE to_user_id = $1
+                  ORDER BY sent_at`, [userID])
     .then((response) => {
       return response.rows;
     });
