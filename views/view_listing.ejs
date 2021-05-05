@@ -21,69 +21,81 @@
 <%- include('partials/_header') %>
 
   <body>
-    <h1>
-      <%= listing.title %>
-    </h1>
+    <div class="listing_container">
+      <h1 class="listing_title">
+        <%= listing.title %>
+      </h1>
 
-    IMAGEURL
+      <img src="<%= listing.image_url %>" alt="" class="listing_image">
 
-    <span>
-      <%= listing.price %>
-    </span>
+      <span>
+        <%= listing.price %>
+      </span>
 
-    <% if (listing.sold_at) { %>
-      <p class="sold">
-        Sold!
-      </p>
-      <% } %>
-
-        <p>
-          <%= listing.description %>
+      <% if (listing.sold_at) { %>
+        <p class="sold">
+          Sold!
         </p>
+        <% } %>
 
-        <h2>Contact Me:</h2>
+          <p>
+            <%= listing.description %>
+          </p>
 
-        <ul>
-          <li>e-mail: <%= listing.email %>
-          </li>
-          <li>text: <%= listing.cellphone %>
-          </li>
-          <li>
-            <form action="/messages" method="POST">
-              <label for="message">Send a message on Chorus:</label>
-              <br>
-              <textarea name="message" placeholder="Send me a message!"></textarea>
-              <button type="submit" class="btn btn-success">Send</button>
-            </form>
-        </ul>
+          <div class="contact_me">
+            <h2>Contact Me:</h2>
 
-        <% if (user) { %>
-          <form action="/favorites/<%= listing.listing_id %>/add" method="POST">
-            <button type="submit" class="btn btn-primary">FAVORITE</button>
-          </form>
-          <% } %>
-
-            <% if (isAdmin) { %>
-              <% if (!listing.sold_at) { %>
-                <form action="/listings/<%= listing.listing_id %>/sold" method="POST">
-                  <button type="submit" class="btn btn-success">MARK AS SOLD</button>
-                </form>
-                <% } else { %>
-                  <form action="/listings/<%= listing.listing_id %>/unsold" method="POST">
-                    <button type="submit" class="btn btn-outline-success">MARK AS UNSOLD</button>
+            <ul>
+              <li>e-mail: <%= listing.email %>
+              </li>
+              <li>text: <%= listing.cellphone %>
+              </li>
+              <% if (user) { %>
+                <li>
+                  <form action="/messages" method="POST">
+                    <label for="message">Send a message on Chorus:</label>
+                    <br>
+                    <textarea name="message" placeholder="Send me a message!"></textarea>
+                    <button type="submit" class="btn btn-success">Send</button>
                   </form>
+                </li>
+                <% } else { %>
+                  <li>
+                    Login to send messages through Chorus
+                  </li>
                   <% } %>
-                    <form action="/listings/<%= listing.listing_id %>/delete" method="POST">
-                      <button type="submit" class="btn btn-danger">DELETE LISTING</button>
+            </ul>
+          </div>
+
+          <div class="listing_buttons">
+            <% if (user) { %>
+              <form action="/favorites/<%= listing.listing_id %>/add" method="POST">
+                <button type="submit" class="btn btn-primary">FAVORITE</button>
+              </form>
+              <% } %>
+
+                <% if (isAdmin) { %>
+                  <% if (!listing.sold_at) { %>
+                    <form action="/listings/<%= listing.listing_id %>/sold" method="POST">
+                      <button type="submit" class="btn btn-success">MARK AS SOLD</button>
                     </form>
+                    <% } else { %>
+                      <form action="/listings/<%= listing.listing_id %>/unsold" method="POST">
+                        <button type="submit" class="btn btn-outline-success">MARK AS UNSOLD</button>
+                      </form>
+                      <% } %>
+                        <form action="/listings/<%= listing.listing_id %>/delete" method="POST">
+                          <button type="submit" class="btn btn-danger">DELETE LISTING</button>
+                        </form>
 
-                    <% } %>
+                        <% } %>
+          </div>
 
 
-
-                      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                        crossorigin="anonymous"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    </div>
   </body>
 
 </html>

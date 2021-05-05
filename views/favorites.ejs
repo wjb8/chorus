@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/favorites.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -24,7 +25,7 @@
       <tbody>
         <% for(const favorite of favorites) { %>
           <tr>
-            <td>IMAGEURL</td>
+            <td><img src="<%= favorite.image_url %>" alt="" class="list_image"></td>
             <td>
               <a href="/listings/<%= favorite.id %>">
                 <%= favorite.title %>
