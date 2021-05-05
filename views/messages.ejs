@@ -14,22 +14,29 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/submit_reply.js"></script>
 </head>
 
 <%- include('partials/_header') %>
 
   <body>
     <h1>Messages</h1>
+    <h5><span class="current-user"><%= currentUser %></span></h5>
 
     <% for (const message of messages) { %>
       <div class="message">
+
         <h5>
-          From: <%= message.name %> // Regarding: <%= message.title %> ID:<%= message.listing_id %>
+          From: <%= message.name %>
+          userID: <span class="from-user-id"><%= message.from_user_id %></span>
+          // Regarding: <%= message.title %>
+          ID:<span class="listing-id"><%= message.listing_id %></span>
         </h5>
+
         <p class="message-text">
           <%= message.message %>
         </p>
-        <form action="/messages/reply" name="<% message.listing_id %>" method="POST">
+        <form action="/messages/reply" class="reply" name="<% message.listing_id %>" method="POST">
           <textarea name="message" placeholder="Send a reply"></textarea>
           <button type="submit" class="btn btn-success">Send</button>
         </form>

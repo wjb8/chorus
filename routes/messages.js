@@ -36,6 +36,14 @@ router.post('/', (req, res) => {
 router.post('/reply', (req, res) => {
   const currentUser = req.session["user_id"];
 
+  const {fromUser, toUser, listing, message} = req.body;
+
+  messageFunctions.postMessage(fromUser, toUser, listing, message)
+    .then(() => {
+      console.log('success');
+      return res.redirect('/listings');
+    });
+
 });
 
 module.exports = router;
