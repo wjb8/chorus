@@ -23,13 +23,21 @@
 
   <body>
     <h2>Filter Listings</h2>
-    <form action="/listings" method="GET">
-      <label for="minPrice">Minimum Price:</label>
-      <input type="text" name="minPrice">
-      <label for="maxPrice">Maximum Price:</label>
-      <input type="text" name="maxPrice">
-      <button type="submit">Search</button>
-    </form>
+    <div class="container filter">
+      <div class="row">
+        <form action="/listings" method="GET">
+          <label for="minPrice">Minimum Price:</label>
+          <input type="text" name="minPrice">
+      </div>
+      <div class="row">
+        <label for="maxPrice">Maximum Price:</label>
+        <input type="text" name="maxPrice">
+      </div>
+      <div class="row">
+        <button type="submit" class="btn btn-primary">Filter</button>
+      </div>
+      </form>
+    </div>
     <h2>Listings</h2>
     <div class="container">
       <% for(const listing of listings) { %>
@@ -38,7 +46,9 @@
             <%= listing.id %>
           </div>
           <div class="col">
-            <img src="<%= listing.image_url %>" alt="" class="list_image">
+            <div class="image-container">
+              <img src="<%= listing.image_url %>" alt="" class="list_image">
+            </div>
           </div>
           <div class="col">
             <%= listing.title %>
@@ -49,24 +59,6 @@
         </div>
         <% } %>
     </div>
-
-    <!-- <table class="table">
-      <tbody>
-        <% for(const listing of listings) { %>
-          <tr>
-            <td><img src="<%= listing.image_url %>" alt="" class="list_image"></td>
-            <td>
-              <a href="/listings/<%= listing.id %>">
-                <%= listing.title %>
-              </a>
-            </td>
-            <td>
-              <%= listing.price %>
-            </td>
-          </tr>
-          <% } %>
-      </tbody>
-    </table> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
