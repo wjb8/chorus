@@ -1,6 +1,16 @@
 $(document).ready(function() {
   console.log('loaded');
 
+  $('.send-reply').hide();
+
+  $('.reply-text').on('input', function() {
+    if ($(this).val().length === 0) {
+      $(this).siblings('.send-reply').hide();
+    } else {
+      $(this).siblings('.send-reply').show();
+    }
+  });
+
   $('.reply').on('submit', function(event) {
     event.preventDefault();
     const fromUser = $('.current-user').text();
