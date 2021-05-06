@@ -69,10 +69,14 @@
           </div>
 
           <div class="listing_buttons">
-            <% if (user) { %>
+            <% if (user && !favorites.some(obj => obj.listing_id === listing.listing_id)) { %>
               <form action="/favorites/<%= listing.listing_id %>/add" method="POST">
                 <button type="submit" class="btn btn-primary">FAVORITE</button>
               </form>
+              <% } else { %>
+                <form action="/favorites/<%= listing.listing_id %>/remove" method="POST">
+                  <button type="submit" class="btn btn-outline-danger">UNFAVORITE</button>
+                </form>
               <% } %>
 
                 <% if (isAdmin) { %>

@@ -36,14 +36,12 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
-// const usersRoutes = require("./routes/users");
 const listingsRouter = require("./routes/listings");
 const messagesRouter = require("./routes/messages");
 const loginRouter = require("./routes/login");
 const favoritesRouter = require("./routes/favorites");
 
 // Mount all resource routes
-// app.use("/api/users", usersRoutes(db));
 app.use('/listings', listingsRouter);
 app.use('/messages', messagesRouter);
 app.use('/login', loginRouter);
