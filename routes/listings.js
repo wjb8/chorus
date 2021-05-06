@@ -54,6 +54,16 @@ router.post('/', (req, res) => {  //=> Make new listing
 
   const newListing = { userID: user, title: req.body.title, description: req.body.description, price: req.body.price };
 
+  if (newListing.title === '' || newListing.description === '' || newListing.price === '') {
+    res.statusCode = 400;
+    return res.send("Error: Title, price, and description fields must not be empty!");
+  }
+
+  if (typeof (Number(newListing.price)) !== 'number' || Number(newListing.price).toFixed(2) === '0.00') {
+    res.statusCode = 400;
+    return res.send("Error: Price must be an integer!");
+  }
+
   listingFunctions.addNewListing(newListing)
     .then(() => res.redirect('/listings'))
     .catch(err => console.log(err.message));
