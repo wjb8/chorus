@@ -20,19 +20,23 @@
 <%- include('partials/_header') %>
 
   <body>
-    <h1>Messages</h1>
-    <h5><span class="current-user"><%= currentUser %></span></h5>
+    <h1>Inbox</h1>
+    <h5><span class="current-user" hidden>
+        <%= currentUser %>
+      </span></h5>
 
-    <% let ctr = 0 %>
     <% for (const message of messages) { %>
-    <% ctr ++ %>
       <div class="message">
 
         <h5>
           From: <%= message.name %>
-          userID: <span class="from-user-id"><%= message.from_user_id %></span>
-          // Regarding: <%= message.title %>
-          ID:<span class="listing-id"><%= message.listing_id %></span>
+            ( userID: <span class="from-user-id">
+              <%= message.from_user_id %>
+            </span>)
+            // Regarding: <%= message.title %>
+              ( ID:<span class="listing-id">
+                <%= message.listing_id %>
+              </span>)
         </h5>
 
         <p class="message-text">
@@ -40,7 +44,7 @@
         </p>
         <form action="/messages/reply" class="reply" name="reply" method="POST">
           <textarea name="message" class="reply-text" placeholder="Send a reply"></textarea>
-          <button type="submit" id="send-reply-<% ctr %>" class="send-reply btn btn-success">Reply</button>
+          <button type="submit" id="send-reply" class="send-reply btn btn-success">Reply</button>
         </form>
       </div>
       <% } %>

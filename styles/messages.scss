@@ -1,7 +1,18 @@
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
 .message {
   background-color: rgb(197, 197, 197);
   margin: 10px;
   padding: 5px;
+  border-radius: 5px;
+
+  p {
+    padding: 10px 5px;
+  }
 }
 
 .message-text {
