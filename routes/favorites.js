@@ -37,7 +37,7 @@ router.post('/:id/add', (req, res) => {
       if (duplicates.length === 0) {
 
         favoriteFunctions.addFavorite(currentUser, req.params.id)
-          .then(() => res.redirect('/'));
+          .then(() => res.redirect('/favorites'));
       }
       return res.redirect('/');
     });

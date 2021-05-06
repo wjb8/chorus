@@ -5,7 +5,7 @@ const listingFunctions = require('../db/listing-queries');
 
 router.use((req, res, next) => {
   if (!req.session["user_id"]) {
-    res.redirect('/login');
+    res.redirect('/listings');
   }
 
   next();
@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
       console.log(listingOwner);
       messageFunctions.postMessage(currentUser, listingOwner.user_id, currentListing, req.body.message)
         .then(() => {
-          return res.redirect('/messages');
+          return res.redirect('back');
         });
     });
 });
@@ -40,8 +40,7 @@ router.post('/reply', (req, res) => {
 
   messageFunctions.postMessage(fromUser, toUser, listing, message)
     .then(() => {
-      console.log('success');
-      return res.redirect('/listings');
+      return res.redirect('/messages');
     });
 
 });

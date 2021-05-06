@@ -19,13 +19,13 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err.message));
 });
 
-router.get('/new', (req, res) => {  //=>
+router.get('/new', (req, res) => {  //=> Create new listing
   const user = req.session.user_id;
 
   userFunctions.isAdmin(user)
     .then((isAdmin) => {
       if (!isAdmin) {
-        return res.redirect('/login');
+        return res.redirect('/listings');
       }
       res.render('new_listing');
     });

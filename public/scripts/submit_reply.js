@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  console.log('loaded');
 
   $('.send-reply').hide(); //=> Hide buttons on page load
 
