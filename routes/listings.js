@@ -45,8 +45,12 @@ router.get('/:id', (req, res) => { //=> View Specific Listing
     .then((listing) => {
       userFunctions.isAdmin(user)
         .then((isAdmin) => {
-          const templateVars = { listing, isAdmin, user };
-          return res.render('view_listing', templateVars);
+          userFunctions.getUserFavorites(user)
+            .then((favorites) => {
+              console.log(favorites);
+              const templateVars = { listing, isAdmin, user, favorites };
+              return res.render('view_listing', templateVars);
+            });
         });
     });
 });

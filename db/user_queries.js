@@ -10,6 +10,16 @@ const isAdmin = (userID) => {
     });
 };
 
+const getUserFavorites = (userID) => {
+  return db.query(`SELECT * FROM favorites
+                    JOIN users ON users.id = user_id
+                    WHERE users.id = $1`, [userID])
+    .then((response) => {
+      return response.rows;
+    });
+};
+
 module.exports = {
-  isAdmin
+  isAdmin,
+  getUserFavorites
 };
