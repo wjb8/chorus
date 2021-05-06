@@ -39,7 +39,7 @@ router.post('/:id/add', (req, res) => {
         favoriteFunctions.addFavorite(currentUser, req.params.id)
           .then(() => res.redirect('/favorites'));
       }
-      return res.redirect('/');
+      return res.redirect('/favorites');
     });
 });
 
