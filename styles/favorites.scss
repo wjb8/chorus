@@ -5,17 +5,20 @@
   .image-container {
     height: 125px;
     display: flex;
-    width: 150px;
+    width: 200px;
     justify-content: center;
   }
 
   .list_image {
+    border-radius: 5px;
     height: 100%;
     max-width: 100%;
+    border: 1px #777 solid;
   }
 
 
 .listing {
+  border: 1px #777 solid;
   display:flex;
   background-color: burlywood;
   margin: 10px 0;
