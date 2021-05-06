@@ -11,9 +11,27 @@ h1 {
   border-radius: 5px;
 
   p {
+    border-radius: 5px;
     padding: 10px 5px;
-    background-color: #DDD;
+    background-color: #EEE;
   }
+
+  form {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    resize: none;
+    width:100%;
+    background-color: #EEE;
+
+  }
+
+
 }
 
 .message-text {

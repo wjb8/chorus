@@ -39,5 +39,9 @@ $(document).ready(function() {
     $(this).find('textarea').focus();
   });
 
+  $('.reply').on('focusout', function() {
+    $(this).slideUp();
+  });
+
 
 });
