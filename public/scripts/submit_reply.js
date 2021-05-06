@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $('.reply').hide();
 
   $('.send-reply').hide(); //=> Hide buttons on page load
 
@@ -16,7 +17,7 @@ $(document).ready(function() {
     const toUser = $(this).parent().find('.from-user-id').text();
     const listing = $(this).parent().find('.listing-id').text();
     const message = $(this).find('textarea').val();
-    let data = {fromUser, toUser, listing, message};
+    let data = { fromUser, toUser, listing, message };
 
     $.post("/messages/reply", data, function(response) {
       alert("Message sent!");
@@ -24,4 +25,19 @@ $(document).ready(function() {
     }).catch(err => console.log('error:', err));
 
   });
+
+  $('.message').hover(
+    function() {
+      $(this).css("box-shadow", "5px 5px 1px 0px #AAAAAA");
+    }, function() {
+      $(this).css("box-shadow", "none");
+    }
+  );
+
+  $('.message').on('click', function() {
+    $(this).find('.reply').slideDown();
+    $(this).find('textarea').focus();
+  });
+
+
 });

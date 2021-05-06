@@ -24,36 +24,41 @@
     <h5><span class="current-user" hidden>
         <%= currentUser %>
       </span></h5>
+    <div class="container">
+      <% for (const message of messages) { %>
+        <div class="row">
+          <div class="col">
+            <div class="message">
 
-    <% for (const message of messages) { %>
-      <div class="message">
+              <h5>
+                From: <%= message.name %>
+                  ( userID: <span class="from-user-id">
+                    <%= message.from_user_id %>
+                  </span>)
+                  // Regarding: <%= message.title %>
+                    ( ID:<span class="listing-id">
+                      <%= message.listing_id %>
+                    </span>)
+              </h5>
 
-        <h5>
-          From: <%= message.name %>
-            ( userID: <span class="from-user-id">
-              <%= message.from_user_id %>
-            </span>)
-            // Regarding: <%= message.title %>
-              ( ID:<span class="listing-id">
-                <%= message.listing_id %>
-              </span>)
-        </h5>
-
-        <p class="message-text">
-          <%= message.message %>
-        </p>
-        <form action="/messages/reply" class="reply" name="reply" method="POST">
-          <textarea name="message" class="reply-text" placeholder="Send a reply"></textarea>
-          <button type="submit" id="send-reply" class="send-reply btn btn-success">Reply</button>
-        </form>
-      </div>
-      <% } %>
+              <p class="message-text">
+                <%= message.message %>
+              </p>
+              <form action="/messages/reply" class="reply" name="reply" method="POST">
+                <textarea name="message" class="reply-text" placeholder="Send a reply"></textarea>
+                <button type="submit" id="send-reply" class="send-reply btn btn-success">Reply</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
 
 
 
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-          crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
   </body>
 
 </html>
