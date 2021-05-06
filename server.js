@@ -36,7 +36,7 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
-const usersRoutes = require("./routes/users");
+// const usersRoutes = require("./routes/users");
 const listingsRouter = require("./routes/listings");
 const messagesRouter = require("./routes/messages");
 const loginRouter = require("./routes/login");

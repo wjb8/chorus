@@ -26,11 +26,11 @@
     <div class="container filter">
       <div class="row">
         <form action="/listings" method="GET">
-          <label for="minPrice">Minimum Price:</label>
+          <label for="minPrice">Min Price:</label>
           <input type="text" name="minPrice">
       </div>
       <div class="row">
-        <label for="maxPrice">Maximum Price:</label>
+        <label for="maxPrice">Max Price:</label>
         <input type="text" name="maxPrice">
       </div>
       <div class="row">
@@ -38,7 +38,6 @@
       </div>
       </form>
     </div>
-    <h2>Listings</h2>
     <div class="container">
       <% for(const listing of listings) { %>
         <div class="row listing">
