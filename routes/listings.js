@@ -9,7 +9,14 @@ const listingFunctions = require('../db/listing-queries');
 const userFunctions = require('../db/user_queries');
 
 router.get('/', (req, res) => {
-  console.log(req.query);
+  const { minPrice, maxPrice } = req.query;
+  console.log(minPrice, maxPrice);
+  if ((req.query.minPrice && isNaN(Number(req.query.minPrice))) || (req.query.maxPrice && isNaN(Number(req.query.maxPrice)))) {
+    res.statusCode = 400;
+    return res.send("Error: If entering min or max price, they must be numbers!");
+  }
+
+
   listingFunctions.getListings(req.query)
     .then((listings) => {
       const templateVars = { listings };
