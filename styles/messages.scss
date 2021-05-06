@@ -11,6 +11,10 @@ h1 {
   border-radius: 5px;
   border: 1px #777 solid;
 
+  .contact {
+    margin: 0px 10px;
+  }
+
   p {
     border-radius: 5px;
     border: 1px #777 solid;
@@ -20,6 +24,7 @@ h1 {
 
   form {
     display: flex;
+    margin-top: 5px;;
     margin-bottom: 10px;
   }
 

@@ -9,12 +9,17 @@ h2 {
 
   .row {
     margin: 5px 0px;
+
+    .test {
+      text-align: end;
+    }
   }
+
 }
 
 .outer-form {
 
   button {
-    margin: 0px 50%;
+    margin: 10px 50%;
   }
 }

@@ -44,10 +44,15 @@
               <p class="message-text">
                 <%= message.message %>
               </p>
+              <div>
+                <span class="contact">Phone Number: <%= message.cellphone %></span>
+                <span class="contact">Email:<%= message.email %></span>
+              </div>
               <form action="/messages/reply" class="reply" name="reply" method="POST">
                 <textarea name="message" class="reply-text" placeholder="Send a reply"></textarea>
                 <button type="submit" id="send-reply" class="send-reply btn btn-success">Reply</button>
               </form>
+
             </div>
           </div>
         </div>
