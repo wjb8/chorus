@@ -1,3 +1,5 @@
+//Listeners used on both favorites and listings pages to add hover affects and make the entire listing a link to the listing view page
+
 $(document).ready(function() {
 
   $('.listing').hover(

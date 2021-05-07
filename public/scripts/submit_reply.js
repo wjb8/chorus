@@ -1,3 +1,5 @@
+//Used in /messages for ajax posting a message reply and also hiding the reply box until a message is selected
+
 $(document).ready(function() {
   $('.reply').hide();
 

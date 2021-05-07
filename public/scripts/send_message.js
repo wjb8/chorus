@@ -1,3 +1,5 @@
+//Only displays the send button when the length of message input is not 0
+
 $(document).ready(function() {
 
   $('.send-message').hide(); //=> Hide buttons on page load
