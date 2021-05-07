@@ -1,3 +1,5 @@
+// Establish and export the connection to the database to be used throughout the app
+
 const pg = require('pg');
 const Pool = pg.Pool;
 

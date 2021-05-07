@@ -1,5 +1,6 @@
 const db = require('./db');
 
+//Gets all listings, optionally takes in filter params min and max price
 const getListings = (options, limit = 10) => {
 
   const queryParams = [];
@@ -18,10 +19,11 @@ const getListings = (options, limit = 10) => {
     clause = 'AND';
   }
 
+  // Order listings newest to oldest. Default page load shows 10 newest listings
   queryParams.push(limit);
   queryString += `
     GROUP BY listings.id
-    ORDER BY price
+    ORDER BY created_at DESC
     LIMIT $${queryParams.length};
   `;
 
@@ -31,6 +33,7 @@ const getListings = (options, limit = 10) => {
     });
 };
 
+//Get specific listing, join owner user to display contact info
 const getListingByID = (id) => {
   return db.query(`SELECT listings.id as listing_id, *
                   FROM listings
@@ -42,6 +45,7 @@ const getListingByID = (id) => {
     .catch(err => console.log(err.message));
 };
 
+//Make new listing created at NOW with null sold_at by default
 const addNewListing = (listing) => {
   return db.query(
     `INSERT INTO listings (user_id, title, description, price, created_at, sold_at)
@@ -77,6 +81,7 @@ const markSold = (listingID) => {
     });
 };
 
+//Clear the sold_at time if admin removes sold tag
 const markUnsold = (listingID) => {
   return db.query(
     `UPDATE listings
@@ -96,6 +101,7 @@ const deleteListing = (listingID) => {
     });
 };
 
+//Helper used to find the owner user from a listing id
 const getUserByListing = (listingID) => {
   return db.query('SELECT user_id FROM listings WHERE id = $1;', [listingID])
     .then((response) => {
