@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
       const templateVars = { favorites };
 
       return res.render('favorites', templateVars);
-    });
+    }).catch(err => console.log(err));
 });
 
 router.post('/:id/remove', (req, res) => {
@@ -28,28 +28,20 @@ router.post('/:id/remove', (req, res) => {
         return res.redirect(req.headers.referer);
       }
       return res.redirect('/favorites');
-    });
+    }).catch(err => console.log(err));
 });
 
 router.post('/:id/add', (req, res) => {
   const currentUser = req.session["user_id"];
-  const source = req.headers.referer;
 
-  favoriteFunctions.checkForDuplicateFavorite(currentUser, req.params.id)
-    .then((duplicates) => {
-      if (duplicates.length === 0) {
-
-
-        favoriteFunctions.addFavorite(currentUser, req.params.id)
-          .then(() => {
-            if (source.includes('listings')) {
-              return res.redirect(source);
-            }
-            return res.redirect('/favorites');
-          });
+  favoriteFunctions.addFavorite(currentUser, req.params.id)
+    .then(() => {
+      if (req.headers.referer.includes('listings')) {
+        return res.redirect(req.headers.referer);
       }
       return res.redirect('/favorites');
-    });
+    }).catch(err => console.log(err));
+
 });
 
 module.exports = router;
