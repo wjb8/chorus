@@ -46,7 +46,9 @@
               </p>
               <div>
                 <span class="contact">Phone Number: <%= message.cellphone %></span>
-                <span class="contact">Email:<%= message.email %></span>
+                <span class="contact">Email:<a href="mailto:<%= message.email %>">
+                    <%= message.email %>
+                  </a></span>
               </div>
               <form action="/messages/reply" class="reply" name="reply" method="POST">
                 <textarea name="message" class="reply-text" placeholder="Send a reply"></textarea>

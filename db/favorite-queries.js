@@ -8,7 +8,7 @@ const getUserFavorites = (currentUser) => {
 };
 
 const addFavorite = (userID, listingID) => {
-  return db.query('INSERT INTO favorites(user_id, listing_id) VALUES($1, $2);', [userID, listingID])
+  return db.query('INSERT INTO favorites(user_id, listing_id) VALUES($1, $2) RETURNING *;', [userID, listingID])
     .then((response) => {
       return response.rows;
     });
