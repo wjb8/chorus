@@ -7,10 +7,16 @@ h2 {
   flex-direction: column;
   margin: 0 auto;
 
+  textarea {
+    resize: none;
+    outline: none;
+    width:fit-content;
+  }
+
   .row {
     margin: 5px 0px;
 
-    .test {
+    .label {
       text-align: end;
     }
   }

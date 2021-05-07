@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="/styles/new_listing.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <%- include('partials/_header') %>
@@ -34,7 +33,7 @@
             <form action="/listings" method="POST">
 
               <div class="row">
-                <div class="col test">
+                <div class="col label">
                   <label for="title">Title:</label>
                 </div>
                 <div class="col">
@@ -43,7 +42,7 @@
               </div>
 
               <div class="row">
-                <div class="col test">
+                <div class="col label">
                   <label for="imageURL">Image URL:</label>
                 </div>
                 <div class="col">
@@ -52,7 +51,7 @@
               </div>
 
               <div class="row">
-                <div class="col test">
+                <div class="col label">
                   <label for="price">Price:</label>
                 </div>
                 <div class="col">
@@ -61,11 +60,11 @@
               </div>
 
               <div class="row">
-                <div class="col test">
+                <div class="col label">
                   <label for="description">Description:</label>
                 </div>
                 <div class="col">
-                  <input type="text" name="description">
+                  <textarea name="description" rows="4" cols="21"></textarea>
                 </div>
               </div>
 
