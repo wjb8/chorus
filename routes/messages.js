@@ -3,6 +3,7 @@ const router = express.Router();
 const messageFunctions = require('../db/message-queries');
 const listingFunctions = require('../db/listing-queries');
 
+//Redirects if the client is not logged in
 router.use((req, res, next) => {
   if (!req.session["user_id"]) {
     res.redirect('/listings');
@@ -33,6 +34,7 @@ router.post('/', (req, res) => {
     });
 });
 
+//Reply used in ajax request coming from messages page
 router.post('/reply', (req, res) => {
   const { fromUser, toUser, listing, message } = req.body;
 

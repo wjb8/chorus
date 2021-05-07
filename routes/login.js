@@ -1,3 +1,5 @@
+//Dummy login used for demo purposes. Use /login/# to login as that user or /login/logout to clear the cookie
+
 const express = require('express');
 const router = express.Router();
 

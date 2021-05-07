@@ -1,16 +1,10 @@
-/*
- * All routes for Listings are defined here
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require('express');
 const router = express.Router();
 const listingFunctions = require('../db/listing-queries');
 const userFunctions = require('../db/user_queries');
 
 router.get('/', (req, res) => {
-  const { minPrice, maxPrice } = req.query;
-  console.log(minPrice, maxPrice);
+  //Make sure that if min or max price is specified that they are valid numbers
   if ((req.query.minPrice && isNaN(Number(req.query.minPrice))) || (req.query.maxPrice && isNaN(Number(req.query.maxPrice)))) {
     res.statusCode = 400;
     return res.send("Error: If entering min or max price, they must be numbers!");
@@ -20,7 +14,6 @@ router.get('/', (req, res) => {
   listingFunctions.getListings(req.query)
     .then((listings) => {
       const templateVars = { listings };
-
       return res.render('listings', templateVars);
     })
     .catch(err => console.log(err.message));
@@ -63,8 +56,10 @@ router.post('/', (req, res) => {  //=> Make new listing
     return;
   }
 
+  //Group all needed vars for new listing in an object to pass to query
   const newListing = { userID: user, title: req.body.title, description: req.body.description, price: req.body.price };
 
+  //Error checks for form, values must not be empty and price must be a valid number
   if (newListing.title === '' || newListing.description === '' || newListing.price === '') {
     res.statusCode = 400;
     return res.send("Error: Title, price, and description fields must not be empty!");
