@@ -27,44 +27,13 @@
         <%= listing.title %>
       </h1>
       <% if (listing.sold_at) { %>
-        <p class="sold">
+        <h2 class="sold">
           Sold!
-        </p>
+        </h2>
         <% } %>
-          <span>
+          <h2 class="price">
             <%= listing.price %>
-          </span>
-
-          <img src="<%= listing.image_url %>" alt="" class="listing_image">
-
-          <p>
-            <%= listing.description %>
-          </p>
-
-          <div class="contact_me">
-            <h2>Contact Me:</h2>
-
-            <ul>
-              <li>e-mail: <%= listing.email %>
-              </li>
-              <li>text: <%= listing.cellphone %>
-              </li>
-              <% if (user) { %>
-                <li>
-                  <form action="/messages" method="POST">
-                    <label for="message">Send a message on Chorus:</label>
-                    <br>
-                    <textarea name="message" class="send-message-text" placeholder="Send me a message!"></textarea>
-                    <button type="submit" class="send-message btn btn-success">Send</button>
-                  </form>
-                </li>
-                <% } else { %>
-                  <li>
-                    Login to send messages through Chorus
-                  </li>
-                  <% } %>
-            </ul>
-          </div>
+          </h2>
 
           <div class="listing_buttons">
             <% if (user && !favorites.some(obj=> obj.listing_id === listing.listing_id)) { %>
@@ -93,6 +62,43 @@
 
                           <% } %>
           </div>
+
+          <img src="<%= listing.image_url %>" alt="" class="listing_image">
+
+          <p>
+            <%= listing.description %>
+          </p>
+
+          <div class="contact_me">
+            <h2 class="contact-header">Contact Me:</h2>
+            <% if (user) { %>
+
+              <ul>
+                <li>Email: <a href="mailto:<%= listing.email %>">
+                    <%= listing.email %>
+                  </a>
+                </li>
+                <li>Text: <%= listing.cellphone %>
+                </li>
+                <li>Send me a message on Chorus:</li>
+              </ul>
+              <form action="/messages" method="POST">
+                <br>
+                <textarea name="message" class="send-message-text"
+                  placeholder="Send me a message and I'll get back to you!" rows="3"></textarea>
+                <button type="submit" class="send-message btn btn-success">Send</button>
+              </form>
+              </li>
+              </ul>
+              <% } else { %>
+                <p>
+                  Please login if you would like to negotiate with the owner of this item.
+                </p>
+                <% } %>
+
+          </div>
+
+
 
 
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"

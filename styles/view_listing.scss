@@ -3,10 +3,38 @@
   flex-direction: column;
   margin: 10px 20px;
 
-  h1, img, span, p, .contact_me, .listing_buttons {
+  h1, img, .price, .sold, p, .contact_me, .listing_buttons {
     align-self: center;
   }
 
+
+
+  p {
+    margin: 10px;
+    font-size: larger;
+  }
+
+  .contact-header {
+    text-align: center;
+  }
+
+  .contact_me {
+    min-width: 400px;
+    width: 40%;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    width: 100%;
+  }
+
+  .send-message-text {
+    border: none;
+    outline: none;
+    resize: none;
+    width: 100%;
+  }
 }
 
 .listing_image {
@@ -16,6 +44,8 @@
 
 .listing_buttons {
   display: flex;
+  margin-bottom: 20px;
+  margin-top: 10px;
 
   button {
     margin: 0px 10px;
