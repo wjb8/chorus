@@ -34,8 +34,10 @@
             <%= listing.price %>
           </h2>
 
+          <!-- For non-users, no buttons. For regular users, only favorite. For admin, favorite, mark sold, and delete buttons -->
           <div class="listing_buttons">
             <% if (user) { %>
+              <!-- If already favorited, give the option to unfavorite -->
               <% if (!favorites.some(obj=> obj.listing_id === listing.listing_id)) { %>
                 <form action="/favorites/<%= listing.listing_id %>/add" method="POST">
                   <button type="submit" class="btn btn-primary">FAVORITE</button>
@@ -48,6 +50,7 @@
                     <% } %>
 
                       <% if (isAdmin) { %>
+                        <!-- If already marked as sold, give the option to undo that marking -->
                         <% if (!listing.sold_at) { %>
                           <form action="/listings/<%= listing.listing_id %>/sold" method="POST">
                             <button type="submit" class="btn btn-success">MARK AS SOLD</button>

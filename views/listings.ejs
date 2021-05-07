@@ -39,11 +39,13 @@
     </div>
     <div class="container">
       <% for(const listing of listings) { %>
+        <!-- Each listing div will be a link to that listing view in its entirety -->
         <div class="row listing">
           <div class="col id" hidden>
             <%= listing.id %>
           </div>
           <div class="col">
+            <!-- Image container helps with sizing in css -->
             <div class="image-container">
               <img src="<%= listing.image_url %>" alt="" class="list_image">
             </div>

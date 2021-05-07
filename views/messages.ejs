@@ -20,6 +20,7 @@
 
   <body>
     <h1>Inbox</h1>
+    <!-- Current user ID is hidden but used to pull info when replying -->
     <h5><span class="current-user" hidden>
         <%= currentUser %>
       </span></h5>
@@ -44,6 +45,7 @@
                 <%= message.message %>
               </p>
               <div>
+                <!-- Display contact info for non-app reply options -->
                 <span class="contact">Phone Number: <%= message.cellphone %></span>
                 <span class="contact">Email:<a href="mailto:<%= message.email %>">
                     <%= message.email %>
