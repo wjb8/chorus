@@ -13,3 +13,11 @@
   max-width: 400px;
   max-height: 800px;
 }
+
+.listing_buttons {
+  display: flex;
+
+  button {
+    margin: 0px 10px;
+  }
+}

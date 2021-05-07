@@ -26,18 +26,16 @@
       <h1 class="listing_title">
         <%= listing.title %>
       </h1>
-
-      <img src="<%= listing.image_url %>" alt="" class="listing_image">
-
-      <span>
-        <%= listing.price %>
-      </span>
-
       <% if (listing.sold_at) { %>
         <p class="sold">
           Sold!
         </p>
         <% } %>
+          <span>
+            <%= listing.price %>
+          </span>
+
+          <img src="<%= listing.image_url %>" alt="" class="listing_image">
 
           <p>
             <%= listing.description %>
@@ -69,7 +67,7 @@
           </div>
 
           <div class="listing_buttons">
-            <% if (user && !favorites.some(obj => obj.listing_id === listing.listing_id)) { %>
+            <% if (user && !favorites.some(obj=> obj.listing_id === listing.listing_id)) { %>
               <form action="/favorites/<%= listing.listing_id %>/add" method="POST">
                 <button type="submit" class="btn btn-primary">FAVORITE</button>
               </form>
@@ -77,23 +75,23 @@
                 <form action="/favorites/<%= listing.listing_id %>/remove" method="POST">
                   <button type="submit" class="btn btn-outline-danger">UNFAVORITE</button>
                 </form>
-              <% } %>
+                <% } %>
 
-                <% if (isAdmin) { %>
-                  <% if (!listing.sold_at) { %>
-                    <form action="/listings/<%= listing.listing_id %>/sold" method="POST">
-                      <button type="submit" class="btn btn-success">MARK AS SOLD</button>
-                    </form>
-                    <% } else { %>
-                      <form action="/listings/<%= listing.listing_id %>/unsold" method="POST">
-                        <button type="submit" class="btn btn-outline-success">MARK AS UNSOLD</button>
+                  <% if (isAdmin) { %>
+                    <% if (!listing.sold_at) { %>
+                      <form action="/listings/<%= listing.listing_id %>/sold" method="POST">
+                        <button type="submit" class="btn btn-success">MARK AS SOLD</button>
                       </form>
-                      <% } %>
-                        <form action="/listings/<%= listing.listing_id %>/delete" method="POST">
-                          <button type="submit" class="btn btn-danger">DELETE LISTING</button>
+                      <% } else { %>
+                        <form action="/listings/<%= listing.listing_id %>/unsold" method="POST">
+                          <button type="submit" class="btn btn-outline-success">UNMARK AS SOLD</button>
                         </form>
-
                         <% } %>
+                          <form action="/listings/<%= listing.listing_id %>/delete" method="POST">
+                            <button type="submit" class="btn btn-danger">DELETE LISTING</button>
+                          </form>
+
+                          <% } %>
           </div>
 
 
